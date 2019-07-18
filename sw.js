@@ -36,10 +36,14 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "5129223627495b27ebd763a23594e7d4"
+    "revision": "a122a03b0ffc4b512fa68aef0839f6ea"
   },
   {
     "url": "styles.88f900cedfe79daaa510.css"
+  },
+  {
+    "url": "google-fonts/s/pressstart2p/v8/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2",
+    "revision": "18682aa5b1ee731888e193ab98bffe2b"
   },
   {
     "url": "1-d98de8918daf7d6a12ac.js"
