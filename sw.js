@@ -29,7 +29,7 @@ self.__precacheManifest = [
     "url": "webpack-runtime-7e4ceb93d0ec2368509a.js"
   },
   {
-    "url": "styles.e4ff885fa059ec35e1dd.css"
+    "url": "styles.6244ef06a948b7571f94.css"
   },
   {
     "url": "styles-9aa39f4cb1f1e57aa12d.js"
@@ -42,7 +42,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "6c038451823eeb1f0f2ca9062538d77b"
+    "revision": "3a2d58991d97fd3a84422be42cbf5dfc"
   },
   {
     "url": "google-fonts/s/pressstart2p/v8/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2",
@@ -60,11 +60,11 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/404.html/page-data.json",
-    "revision": "3ce680530a71bcb90d3b44e3cd02f68c"
+    "revision": "77511f5854b48df4bd71fe23f4de4cb3"
   },
   {
     "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "2357bab96db35c0ca56c2edef5d16e18"
+    "revision": "dc864af93a6cb7cdb609beae90f4d045"
   },
   {
     "url": "manifest.webmanifest",
