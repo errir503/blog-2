@@ -3,9 +3,9 @@
 <p>The most expensive part of rendering websites is about download, and parse  Javascript and css. That said, if we don’t need to render a specific piece of code on the first render, this code it’s a good candidate to be splitted and downloaded by demand, no secrets so far.</p>
 <p>Google Chrome has a nice dev tool called <code class="language-text">coverage</code> that shows what percentage of the code delivered it’s being used. This might be used as a metric to follow and know how much code might be splitted and downloaded by demand. </p>
 <p>To use coverage tool just open your dev tools, <code class="language-text">cmd/ctrl + p</code>, and type <code class="language-text">show coverage</code>:</p>
-<p><img src="/images/coverage.png" alt="image showing how to access coverage tab on chrome dev tools"> </p>
+<p><img src="/blog/images/coverage.png" alt="image showing how to access coverage tab on chrome dev tools"> </p>
 <p>then, on coverage tab click on the reload button and wait until the website is refreshing, this will show you how much code you are using at that specific page per asset downloaded. It’s AMAZING! 😍</p>
-<p><img src="/images/result.png" alt="image showing coverage tab, where we can see a list of assets downloaded and how much code it&#x27;s not being used in red."> </p>
+<p><img src="/blog/images/result.png" alt="image showing coverage tab, where we can see a list of assets downloaded and how much code it&#x27;s not being used in red."> </p>
 <p>On the example above, 46% of the code delivered it’s <code class="language-text">not</code> being used! but that’s metric is also relative, depends on file size e many other variables, so the context/scenario is super important when using these tools.</p>
 <h2>Code splitting and webpack</h2>
 <p>With webpack we have two ways to work with code splitting, static and “dynamic” imports, both using <a href="https://v8.dev/features/dynamic-import">dynamic imports es2020 feature</a></p>
