@@ -2,7 +2,7 @@
 <p><code class="language-text">inicial</code>: O input aparece desabilitado, o usuário pode então clicar no ícone de editar. </p>
 <p><code class="language-text">editando</code>: O input está habilitado para receber o novo valor de nome, o usuário pode então clicar no ícone de salvar.</p>
 <p><code class="language-text">salvando</code>: No lugar dos ícones de editar/salvar mostramos um loading sinalizando que alguma ação assíncrona está acontecendo, nesse caso, estamos salvando o novo valor de nome.</p>
-<p><img src="/images/web-development-with-state-charts-intro/image-1.jpg" alt="imagem mostrando o component de input e seus estados."> </p>
+<p><img src="/blog/images/web-development-with-state-charts-intro/image-1.jpg" alt="imagem mostrando o component de input e seus estados."> </p>
 <h2 class="subtitle--separator"></h2>
 <p>Nosso querido Front-end começou a implementação com duas variáveis boleanas:</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">isEditing <span class="token operator">=</span> <span class="token boolean">false</span>
@@ -13,7 +13,7 @@ isSaving <span class="token operator">=</span> <span class="token boolean">false
     isEditing <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre></div>
-<p><img src="/images/web-development-with-state-charts-intro/image-2.jpg" alt="imagem mostrando o component de input em seu estado inicial e mostrando que o ícone editar possui um evento de on click."> </p>
+<p><img src="/blog/images/web-development-with-state-charts-intro/image-2.jpg" alt="imagem mostrando o component de input em seu estado inicial e mostrando que o ícone editar possui um evento de on click."> </p>
 <p>Ao chegar no estado de edição e sabendo que o usuário poderia novamente clicar no ícone que dessa vez se transformava no ícone para salvar, o mesmo continuou sua implementação adicionando mais um trecho código na função de <strong><em>onClick</em></strong>:</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">onClick</span><span class="token punctuation">(</span><span class="token parameter">isEditing<span class="token punctuation">,</span> isSaving</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>isEditing <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>isSaving<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -32,9 +32,9 @@ isSaving <span class="token operator">=</span> <span class="token boolean">false
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>O trecho de código adicionado primeiro testa se o usuário está no estado de <strong><em>edição</em></strong>, caso verdadeiro, faz o switch das variáveis para levar o usuário para o estado de <strong><em>salvando</em></strong>, e logo em seguida faz um request na api para salvar o novo valor de nome. Ao receber um retorno da api, resetamos as duas variáveis boleanas para false, pois agora, o usuário não está editando e nem salvando um novo valor, o que supostamente levaria o usuário para o estado <strong><em>inicial</em></strong>.</p>
-<p><img src="/images/web-development-with-state-charts-intro/image-3.png" alt="imagem mostrando o component de input saindo do esado de editando para salvando, e depois de salvando para inicial."></p>
+<p><img src="/blog/images/web-development-with-state-charts-intro/image-3.png" alt="imagem mostrando o component de input saindo do esado de editando para salvando, e depois de salvando para inicial."></p>
 <p>Não muito confiante na solução, deu a task como terminada e seguiu sua vida.</p>
-<p><img src="/images/web-development-with-state-charts-intro/gif-1.gif" alt="gif de um menino nerd dando joinha."></p>
+<p><img src="/blog/images/web-development-with-state-charts-intro/gif-1.gif" alt="gif de um menino nerd dando joinha."></p>
 <h2 class="subtitle--separator"></h2>
 <p>…Era uma vez um designer, que esqueceu de trabalhar no estado de erro do “simples” componente de input.</p>
 <p><strong><em>“Hey dev, Esqueci de um detalhe, não tratamos o estado de erro do input. Quando der erro, volta pro estado de edição por que o cliente pode tentar salvar novamente.”</em></strong></p>
@@ -67,10 +67,10 @@ isError <span class="token operator">=</span> <span class="token boolean">false<
 <span class="token punctuation">}</span></code></pre></div>
 <p>Task concluida novamente.
 Desconfortável com a solução final, foi pesquisar. Afinal, qual o problema com variáveis boleanas? </p>
-<p><img src="/images/web-development-with-state-charts-intro/image-4.png" alt="imagem mostrando que podemos ter 8 variações usando 3 variáveis booleanas."></p>
+<p><img src="/blog/images/web-development-with-state-charts-intro/image-4.png" alt="imagem mostrando que podemos ter 8 variações usando 3 variáveis booleanas."></p>
 <p>O problema é que como na imagem acima, apesar de parecer inofensiva e óbvio, 1 variável boleana representa duas variações. O porém que ninguém lembra é que adicionando mais de uma variável, suas variações crescem exponencialmente. Com três variáveis boleanas como no exemplo acima, temos 8 variações.</p>
 <p>E aí, você acha que o código acima está preparado para lidar com 8 variações? A resposta infelizmente é: não. Seu código pode parecer simples e estar 99% vunerável a bugs.</p>
-<p><img src="/images/web-development-with-state-charts-intro/image-5.jpg" alt="meme de um homem tampando a placa do carro pela metada na primeira parte da foto, e na segunda parte tampando a outra."></p>
+<p><img src="/blog/images/web-development-with-state-charts-intro/image-5.jpg" alt="meme de um homem tampando a placa do carro pela metada na primeira parte da foto, e na segunda parte tampando a outra."></p>
 <p>Sabendo disso, podemos fazer diferente, podemos mapear todos os estados em uma constante:</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> stateType <span class="token operator">=</span> <span class="token punctuation">{</span>
   <span class="token string">'IDLE'</span><span class="token operator">:</span> <span class="token string">'IDLE'</span><span class="token punctuation">,</span>
@@ -113,12 +113,12 @@ Desconfortável com a solução final, foi pesquisar. Afinal, qual o problema co
 <p>source: <a href="https://pt.wikipedia.org/wiki/M%C3%A1quina_de_estados_finita">https://pt.wikipedia.org/wiki/Máquina<em>de</em>estados_finita</a></p>
 <p>Uma forma bem simples de representar FSM é usando um diagrama de transição de estados, onde o conseguimos vizualizar todo o fluxo de transição de estados por exemplo:</p>
 <p><strong><em>começando em um estado A ⇒ um vento X aconteceu ⇒ vamos para um estado B</em></strong></p>
-<p><img src="/images/web-development-with-state-charts-intro/image-6.png" alt="imagem mostrando um diagrama de transição de estados"></p>
+<p><img src="/blog/images/web-development-with-state-charts-intro/image-6.png" alt="imagem mostrando um diagrama de transição de estados"></p>
 <h3>Finite State Machines? State charts? que confusão!</h3>
 <p>Quando começamos a estudar mais sobre Finete State Machines vamos sempre nos deparar com um outro nome que é <code class="language-text">State Charts</code>, mas a propósito qual a grande diferença entre eles? </p>
 <p>Como qualquer solução, Finite State Machines por sí só tem alguns problemas, geralmente acabam com um grande número de estados, muitos deles com transições idênticas, tornando muito verboso e de difícil manutenção. Este é o famoso problema conhecido como explosão de estados.</p>
 <p>State Charts por sua vez, apareceu pouco tempo depois adicionando soluções para que FSM fossem mais escalável a medida que o seu sistema fosse crescendo e ficando mais complexo. Além de novas ideias para tornar sua vida mais fácil.</p>
-<p><img src="/images/web-development-with-state-charts-intro/image-7.png" alt="imagem mostrando alguns dos conceitos que state charts contém, como activity, actions, paralel states entre outros..."></p>
+<p><img src="/blog/images/web-development-with-state-charts-intro/image-7.png" alt="imagem mostrando alguns dos conceitos que state charts contém, como activity, actions, paralel states entre outros..."></p>
 <p>Vale lembrar que a ideia foi apresentada há mais de 20 anos atrás, além de ser uma das bases da computação, é usada largamente em hardware embarcados e games! Com o aparecimento da lib Xstate que vamos descobrir no próximo post, o uso na web e pricipalmente usando Javascript está crescendo cada vez mais. Apenas para deixar um gostinho do que vamos ver no próximo artigo e também sobre uma das maiores vantagens de se usar State Charts que é o poder de vizualizar seu código, dá uma olhada como ficaria nosso codigo do componente de input usando Xstate:</p>
 <p><a href="https://xstate.js.org/viz/?gist=d73e129d583ac4a0ba956736e68dbdd2">https://xstate.js.org/viz/?gist=d73e129d583ac4a0ba956736e68dbdd2</a></p>
 <p>Não se preocupe se não entendeu o código, vamos aprender tudo sobre o uso de Xstate e State Charts em uma aplicação real no próximo artigo!</p>
