@@ -87,7 +87,7 @@
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>e no xstate/viz:</p>
 <p><img src="/blog/images/modeling-your-first-application-using-statecharts-and-xstate/image-4.png" alt="imagem mostrando o resultado do codigo colado no xstate/viz"></p>
-<p>Vizualizar seu código é muito interessante, no exemplo acima, podemos ver claramente qual evento leva a aplicação para outro estado e todos os fluxos possíveis. E inclusive furos no sistema, veja como o estado cant_retry nunca acontecerá pois nenhum evento força uma transição até ele 🤷‍♂️ mas calma, nós vamos chegar lá.</p>
+<p>Vizualizar seu código é muito interessante, no exemplo acima, podemos ver nitidamente qual evento leva a aplicação para outro estado e todos os fluxos possíveis. E inclusive furos no sistema, veja como o estado cant_retry nunca acontecerá pois nenhum evento força uma transição até ele 🤷‍♂️ mas calma, nós vamos chegar lá.</p>
 <h3>Context</h3>
 <p>Context é uma feature da lib Xstate que ter permite salvar contextos dinâmicos dependendo do estado que sua aplicação está. Context nesse caso é o nosso famoso estado como estamos acostumados a usar com outras libs como Redux, Mobx, Context Api no caso de usar com React, ou até mesmo um simples componente state.</p>
 <p>Nesse caso, nosso contexto será a nossa foto atual para ser exibida e a quantidade de vezes que o usuário tentou buscar uma nova foto em caso de erros, precisamos iniciar nossa machine com o contexto inicial, o código então ficaria dessa forma:</p>
@@ -125,7 +125,7 @@
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>Perceba que nesse caso, não temos nenhuma alteração nos estados da aplicação. Mas no xstate/viz se você abrir a aba chamada <code class="language-text">State</code> você pode ver que ele te mostra qual o estado atual da aplicação e qual os valores do contexto naquele momento.</p>
 <p><img src="/blog/images/modeling-your-first-application-using-statecharts-and-xstate/image-5.png" alt="imagem mostrando a aba state no xstate/viz"></p>
-<h3>Trabalhando com ações assincronas</h3>
+<h3>Trabalhando com ações assíncronas</h3>
 <p>Em qualquer aplicação sempre teremos ações que são assíncronas e os resultados dessas ações podem ou não resultar em uma transição de estado. Usando Xstate chamamos isso de Services, e chamar um serviço é tão fácil e declarativo quanto qualquer outro conceito.</p>
 <p>No nosso exemplo, o serviço será uma promise que vai fazer o request para buscar uma nova foto. O resultado dessa promise, se com sucesso ou erro gerara transições de estados. Pensando em um fluxo de dados quando a aplicação sai do estado de ocioso(idle) para loading é nesse momento que devemos então fazer nosso request. Preste bem atenção no estado de loading no proximo exemplo:</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> catsApp <span class="token operator">=</span> <span class="token function">Machine</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
